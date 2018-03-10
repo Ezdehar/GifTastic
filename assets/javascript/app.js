@@ -1,7 +1,7 @@
- $("button").on("click", function() {
+    function displayTopicInfo() {
       var topics = ["Woke", "Meta Physics", "The universe", "Spirituality"];
       var topics = $(this).attr("data-topic");
-      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topics + "&api_key=hHeUKZfzR6ic2S4M2kJJk0m8NVdAnkGL=10";
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topics + "&api_key=hHeUKZfzR6ic2S4M2kJJk0m8NVdAnkGL&limit=10";
 
     $.ajax({
       url: queryURL,
@@ -13,7 +13,7 @@
         
       var results = response.data
       
-      for (var i = 0; i < topic.length; i++) {
+      for (var i = 0; i < topic.length; i++) 
       var gifDiv = $("<button>");
 
       var rating = results[i].rating;
@@ -26,6 +26,13 @@
       gifImage.append(topicImage);
       
       $("#gifs-appear-here").prepend(gifDiv);
+
+      function renderButtons() {
+        $("button").on("click", function(event) {
+          event.preventDefault();
+          var topic = $("topic-input").val().trim();
+          topic.push(topic);
+          renderButtons(); 
+          $(document).on("click", "topic-btn", displayTopicInfo);
       }
     });
-  });

@@ -20,37 +20,51 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   	<script src="/Users/ezdeharjaber/Documents/GifTastic/assets/javascript/app.js"></script>
   	<script>
-  		$("button").on("click", function() {
-		  var topics = ["Woke", "Meta Physics", "The universe", "Spirituality"];
-		  var topics = $(this).attr("data-topic");
-		  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topics + "&api_key=hHeUKZfzR6ic2S4M2kJJk0m8NVdAnkGL=10";
+  		function displayTopicInfo() {
+      var topics = ["Woke", "Meta Physics", "The universe", "Spirituality"];
+      var topics = $(this).attr("data-topic");
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topics + "&api_key=hHeUKZfzR6ic2S4M2kJJk0m8NVdAnkGL&limit=10";
 
-		$.ajax({
-		  url: queryURL,
-		  method: "GET"
-		})
-		  .then(function(response) {
-		  	console.log(queryURL);
-		  	console.log(response);
-		  	
-		  var results = response.data
-		  
-		  for (var i = 0; i < topic.length; i++) {
-		  var gifDiv = $("<button>");
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+      .then(function(response) {
+      
+      var TopicDiv = ${"div class='topic'>"};
+      var results = response.data
+      
+      var rating = response.Rated;
+      var p = $("<p>").text("Rating: " + rating);
 
-		  var rating = results[i].rating;
-		  var p = $("<p>").text("Rating: " + rating);
+      topic.div.append(pOne);
+      var released = response.Released;
 
-		  var topicImage = $("<img>");
-		  topicImage.attr("src", results[i].images.fixed_height.url);
+      var topicImage = $("<img>");
+      topicImage.attr("src", results[i].images.fixed_height.url);
 
-		  gifImage.append(p);
-		  gifImage.append(topicImage);
-		  
-		  $("#gifs-appear-here").prepend(gifDiv);
+      gifImage.append(p);
+      gifImage.append(topicImage);
+      
+
+      $("#gifs-appear-here").prepend(gifDiv);
+
+      function renderButtons() {
+
+
+        $("button").on("click", function() {
+          let inputName(inputTopic) {
+          const topicDiv
+          for (var i = 0; i < topic.length; i++) 
+      var gifDiv = $("<button>");
+          var topic = $("topic-input").val().trim();
+          topic.push(topic);
+          renderButtons(); 
+          $(document).on("click", "topic-btn", displayTopicInfo);
+      }
       }
     });
-  });
+
 </script>
 </body>
 </html>
