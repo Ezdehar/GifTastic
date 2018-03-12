@@ -3,68 +3,57 @@
 <head>
 	<meta charset="utf-8">
 	<title>Favorite Topics</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>	
 <body>
-	<div id="buttons">
-		<button data-topic="">Woke</button>
-		<button data-topic="">Meta Physics</button>
-		<button data-topic="">The Universe</button>
-		<button data-topic="">Spirituality</button>
-	</div>
-	</div>
-		<div id="gifs-appear-here">
-	 </div>
+    <button data-topic="Woke">Woke</button>
+    <button data-topic="Meta Physics">Meta Physics</button>
+    <button data-topic="The Universe">The Universe</button>
+    <button data-topic="Spirituality">Spirituality</button>
+    <div id="gifs-appear-here">
+      </div>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script type="text/javascript">
+  
+  $("#button").on("click", function() {
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  	<script src="/Users/ezdeharjaber/Documents/GifTastic/assets/javascript/app.js"></script>
-  	<script>
-  		function displayTopicInfo() {
-      var topics = ["Woke", "Meta Physics", "The universe", "Spirituality"];
-      var topics = $(this).attr("data-topic");
-      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topics + "&api_key=hHeUKZfzR6ic2S4M2kJJk0m8NVdAnkGL&limit=10";
+    var topic = $(this).attr("data-topic");
 
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=hHeUKZfzR6ic2S4M2kJJk0m8NVdAnkGL&limit=10";
+            
     $.ajax({
       url: queryURL,
       method: "GET"
     })
       .then(function(response) {
-      
-      var TopicDiv = ${"div class='topic'>"};
-      var results = response.data
-      
-      var rating = response.Rated;
-      var p = $("<p>").text("Rating: " + rating);
 
-      topic.div.append(pOne);
-      var released = response.Released;
+        var results = response.data;
 
-      var topicImage = $("<img>");
-      topicImage.attr("src", results[i].images.fixed_height.url);
+        for (var i = 0; i < topics.length; i++) {
 
-      gifImage.append(p);
-      gifImage.append(topicImage);
-      
+          if (result[i].rating !== "r" && results[i].rating !== "pg-13"
+            ) {
+                var gifDiv = $("<div class='item'>");
 
-      $("#gifs-appear-here").prepend(gifDiv);
-
-      function renderButtons() {
-
-
-        $("button").on("click", function() {
-          let inputName(inputTopic) {
-          const topicDiv
-          for (var i = 0; i < topic.length; i++) 
-      var gifDiv = $("<button>");
-          var topic = $("topic-input").val().trim();
-          topic.push(topic);
-          renderButtons(); 
-          $(document).on("click", "topic-btn", displayTopicInfo);
-      }
-      }
-    });
-
-</script>
+                  var rating = results[i].rating;
+                  
+                  var p = $("<p>").text("Rating: " + rating);
+                  
+                  var topicImage = $("<img>");
+                
+                  topicImage.attr("src", results[i].images.fixed_height.url);
+                  
+                  gifDiv.append(p);
+                  gifDiv.append(topicImage);
+                  
+                  $("#gifs-appear-here").prepend(gifDiv);
+                }
+        
+              }
+            });
+          });
+  </script>
 </body>
 </html>
+
+
+
